@@ -1,0 +1,156 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Head{
+  background: rgb(26, 25, 25);
+  color:white;
+  display: flex;
+  justify-content: space-between
+}
+.language{
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+
+}
+.subheading{
+  /* margin-top: 0.5%;
+  margin-left: 27%; */
+  align-items: flex-end;
+  margin-right: 1.4%;
+  justify-content:end;
+}
+label{
+  margin-right: 12%;
+}
+select{
+  border-radius: 3%;
+  margin-top: 0.4%;
+  background-color: #080708;
+  color:rgb(122, 119, 119);
+}
+
+.name{
+  margin-left: 2%;
+}
+
+
+.compile-button {
+  display: flex;
+  box-shadow: #ccc;
+  justify-content: center;
+  align-items: center;
+  background-color: #242222;
+  color: #fff;
+  font-size:  20px;
+  border: rgb(78, 74, 74) solid;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: #cecece;
+    color: #282c34;
+  }
+}
+
+.aside{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2%;
+}
+.edittorwrap{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+}
+.code{
+  background: #4d4c4c;
+  width: 100%;
+  resize: none;
+  color: #ccc;
+  border: 1px solid #0c0c0c;
+  border-radius: 5px;
+  border-width: 3px ;
+}
+.code-input{  
+  background: #474747;
+  width: 100%;
+  resize: none;
+  color: #ccc;
+  border: 1px solid #080808;
+  border-radius: 5px;
+  border-width: 2px black;
+}
+.code-output{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  background: #424242;
+  width: 100%;
+  color: #ccc;
+  border: 1px solid #050505;
+  border-radius: 5px;
+  border-width: 1% solid black;
+}
+.out{
+  margin-left: 2px;
+  margin-right: 285px;
+}
+.ans{
+  width: 100%;
+}
+.para{
+  margin-left: 13px;
+}
+.Mainwrapper{
+  background-color: #050505;
+  display: block;
+}
+.foot{
+  color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+
+}
