@@ -75,7 +75,7 @@ exports.logOut = async (req, res) => {
       console.log("All temporary files flushed !");
     });
     compiler.flushSync();
-    return resjson({ msg: "successfully log out", status: true });
+    return res.json({ msg: "successfully log out", status: true });
   } catch (err) {
     console.log("logout fails");
     res.json({ msg: "Can't logout", status: false });
