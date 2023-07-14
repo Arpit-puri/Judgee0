@@ -5,83 +5,80 @@ compiler.init(options);
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 
 module.exports.register = async (req, res, next) => {
   try {
-    const { email,username, password } = req.body;
-    const userCheck= await User.findOne({username});
-   
-    if(userCheck){
+    const { email, username, password } = req.body;
+    const userCheck = await User.findOne({ username });
+
+    if (userCheck) {
       return res.json({ msg: "username already used", status: false });
     }
     console.log(userCheck);
     //check out db schema for password
-    if (
-      password&&
-      email &&
-      username
-    ) {        
+    if (password && email && username) {
       const user = new User({
         //check out register.js file schema use all the attrebutes in it
-       username,
-       email,
-       password
+        username,
+        email,
+        password,
       });
       await user.save();
       res.json({ status: true, user });
     } else {
-      res.json({msg:"Error to register", status: false});
+      res.json({ msg: "Error to register", status: false });
     }
   } catch (e) {
-    res.json({msg:"Error to register", status: false});
+    res.json({ msg: "Error to register", status: false });
   }
 };
 
 module.exports.login = async (req, res, next) => {
   try {
     const { username, password } = req.body;
-   
+
     if (!username || !password) {
-      return res.json({msg:"Fill all details", status: false});
+      return res.json({ msg: "Fill all details", status: false });
     }
-    const user = await User.findOne({username: username});
+    const user = await User.findOne({ username: username });
 
     if (!user) {
-      return res.json({msg:"Invalid details", status: false});
+      return res.json({ msg: "Invalid details", status: false });
     }
     const passwordCheck = await bcrypt.compare(password, user.password);
     if (!passwordCheck) {
-     return  res.json({msg:"Invalid details", status: false});
+      return res.json({ msg: "Invalid details", status: false });
     }
     const token = await user.generateAuthToken();
     if (!token) {
-      return res.json({msg:"Credentials dont match", status: false});
+      return res.json({ msg: "Credentials dont match", status: false });
     }
     res.cookie("jwtoken", token, {
       expires: new Date(Date.now() + 25892000000),
       httpOnly: true,
     });
     return res.json({
-      status:true,
+      status: true,
       msg: "Login Successful...!",
       username: user.username,
       token,
     });
   } catch (ex) {
-    res.json({msg:"Can't login", status: false});
+    res.json({ msg: "Can't login", status: false });
   }
 };
 
 exports.logOut = async (req, res) => {
   try {
-    res.clearCookie("jwtoken");
-    const data = await UserRegister.findOne({ _id: req.userId });
-    data.tokens = [];
-    return res.status(200).json({ messege: "successfully log out" });
+    compiler.flush(function () {
+      console.log("All temporary files flushed !");
+    });
+    compiler.flushSync();
+    return resjson({ msg: "successfully log out", status: true });
   } catch (err) {
     console.log("logout fails");
-    res.json({msg:"Can't logout", status: false});
+    res.json({ msg: "Can't logout", status: false });
   }
 };
 

@@ -26,6 +26,7 @@ function MainPage() {
   const [language, setLanguage] = useState("cpp");
 
   const handleClick = async () => {
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     const { data } = await axios.get(logoutRoute);
     if (data.status === true) {
       navigate("/login");
